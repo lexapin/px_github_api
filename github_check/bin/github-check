@@ -1,0 +1,5 @@
+#!/usr/bin/python3
+
+if __name__ == "__main__":
+  from github_check import check_github_repo
+  check_github_repo()
