@@ -4,6 +4,8 @@
 
 import re, datetime
 
+from .regexes import TIME_ISO8601_REGEX
+
 class MyDateTime():
   def __init__(self, date_like_str):
     if not isinstance(date_like_str, str):
@@ -14,10 +16,7 @@ class MyDateTime():
     self.date = self.from_str()
 
   def check_str_for_date(self, str_obj):
-    regex = re.compile(
-      r'^\d{4}\-\d{2}\-\d{2}T\d{2}\:\d{2}\:\d{2}Z', re.IGNORECASE
-    )
-    return re.match(regex, str_obj) is not None
+    return re.match(TIME_ISO8601_REGEX, str_obj) is not None
 
   def from_str(self):
     return datetime.datetime.strptime(self.str_date[:-1].replace('T', ' '), '%Y-%m-%d %H:%M:%S')
